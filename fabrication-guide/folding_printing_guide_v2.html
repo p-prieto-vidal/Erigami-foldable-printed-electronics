@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Folding & Printing Guide — M12 TU/e</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,500;0,700;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1814;
+    --paper: #f5f2eb;
+    --paper2: #edeae0;
+    --accent: #c0392b;
+    --silver: #8a9aa6;
+    --fold: #3b5998;
+    --crease: #d4a017;
+    --green: #2e6e4e;
+    --mono: 'DM Mono', monospace;
+    --serif: 'Fraunces', serif;
+    --sans: 'DM Sans', sans-serif;
+    --max: 860px;
+    --col-gap: 24px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px 40px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 260px; height: 260px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transform: rotate(15deg);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: 80px;
+    width: 200px; height: 200px;
+    border: 1px solid rgba(255,255,255,0.04);
+    transform: rotate(30deg);
+  }
+  .header-inner { max-width: var(--max); margin: 0 auto; position: relative; }
+  .header-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--crease);
+    margin-bottom: 12px;
+  }
+  header h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(28px, 5vw, 44px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  header h1 em { font-style: italic; color: #b0b8c4; }
+  .header-specs {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 24px;
+  }
+  .spec-pill {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 5px 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+  }
+  .spec-pill span { color: var(--crease); }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--paper2);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    position: sticky; top: 0; z-index: 50;
+  }
+  .nav-inner {
+    max-width: var(--max); margin: 0 auto;
+    display: flex; gap: 0; overflow-x: auto;
+  }
+  nav a {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.5;
+    text-decoration: none;
+    padding: 12px 16px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: opacity 0.15s, border-color 0.15s;
+  }
+  nav a:hover { opacity: 1; border-color: var(--accent); }
+
+  /* ── MAIN LAYOUT ── */
+  main { max-width: var(--max); margin: 0 auto; padding: 0 24px 80px; }
+
+  /* ── SECTION ── */
+  .section { padding: 52px 0 0; }
+  .section-header {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .section-note {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--silver);
+    letter-spacing: 0.06em;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  /* ── BED DIAGRAM ── */
+  .bed-diagram {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 4px;
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+  .bed-diagram svg { display: block; width: 100%; }
+
+  /* ── PATTERN CARDS ── */
+  .pattern-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .card-header {
+    display: flex; align-items: stretch;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .card-week {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    padding: 12px 10px;
+    display: flex; align-items: center;
+    flex-shrink: 0;
+    color: #fff;
+  }
+  .card-title-block { padding: 16px 20px; flex: 1; }
+  .card-pattern-name {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+  }
+  .card-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--silver);
+    letter-spacing: 0.06em;
+  }
+  .card-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .card-col {
+    padding: 20px 20px;
+    border-right: 1px solid rgba(0,0,0,0.06);
+  }
+  .card-col:last-child { border-right: none; }
+  .card-col-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--silver);
+    margin-bottom: 10px;
+  }
+
+  /* ── DIAGRAM INSIDE CARDS ── */
+  .specimen-diagram { margin-bottom: 12px; }
+  .specimen-diagram svg { display: block; width: 100%; }
+
+  /* ── STEPS LIST ── */
+  .steps { list-style: none; }
+  .steps li {
+    display: flex; gap: 10px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .step-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 1px;
+    min-width: 18px;
+  }
+
+  /* ── MEASUREMENT TABLE ── */
+  .meas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .meas-cell {
+    background: var(--paper2);
+    border-radius: 3px;
+    padding: 8px 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+  }
+  .meas-label { color: var(--silver); margin-bottom: 2px; }
+  .meas-val { font-size: 12px; color: var(--ink); font-weight: 500; }
+
+  /* ── WARNING / TIP BOXES ── */
+  .tip {
+    display: flex; gap: 10px;
+    background: #fffbe6;
+    border-left: 3px solid var(--crease);
+    padding: 10px 12px;
+    border-radius: 0 3px 3px 0;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: 10px;
+  }
+  .tip-icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
+  .warn {
+    background: #fef2f2;
+    border-left-color: var(--accent);
+  }
+  .info {
+    background: #f0f4ff;
+    border-left-color: var(--fold);
+  }
+
+  /* ── PRINT SPEC BADGE ── */
+  .print-spec {
+    display: inline-flex; gap: 6px; flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+  .badge-ink { background: #e8f4e8; color: #2e6e4e; }
+  .badge-geo { background: #e8eef8; color: var(--fold); }
+  .badge-warn { background: #fef2f2; color: var(--accent); }
+  .badge-grey { background: var(--paper2); color: #555; }
+
+  /* ── FULL-WIDTH SUMMARY TABLE ── */
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  .summary-table th {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--silver);
+    padding: 8px 10px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    background: var(--paper2);
+  }
+  .summary-table td {
+    padding: 9px 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    vertical-align: top;
+    line-height: 1.45;
+  }
+  .summary-table tr:last-child td { border-bottom: none; }
+  .summary-table tr:nth-child(even) td { background: rgba(0,0,0,0.015); }
+
+  /* ── CHECKLIST ── */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    font-size: 13px;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .check-box {
+    width: 14px; height: 14px;
+    border: 1.5px solid rgba(0,0,0,0.2);
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── FOLD LEGEND ── */
+  .fold-legend {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    margin-top: 8px; margin-bottom: 4px;
+  }
+  .fold-legend-item {
+    display: flex; align-items: center; gap: 6px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--silver);
+  }
+  .legend-line {
+    width: 24px; height: 0;
+    border-top-width: 2px;
+    border-top-style: solid;
+  }
+
+  @media (max-width: 600px) {
+    .card-body { grid-template-columns: 1fr; }
+    .card-col { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    header { padding: 32px 20px; }
+    main { padding: 0 16px 60px; }
+  }
+
+  @media print {
+    nav { display: none; }
+    .pattern-card { break-inside: avoid; }
+    header { background: var(--ink) !important; -webkit-print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <p class="header-tag">M12 Research · TU/e Industrial Design · 2025</p>
+    <h1>Folding &amp; Printing<br><em>Sample Guide</em></h1>
+    <p style="font-size:13px;opacity:0.6;max-width:560px;margin-top:4px;">
+      Specimen dimensions, trace layout, fold construction, and measurement protocol for all 6 patterns — designed around the Voltera V-One print area.
+    </p>
+    <div class="header-specs">
+      <div class="spec-pill">Print bed <span>128 × 116 mm</span></div>
+      <div class="spec-pill">Max substrate thickness <span>3 mm</span></div>
+      <div class="spec-pill">Min trace width <span>0.2 mm</span></div>
+      <div class="spec-pill">Ink <span>Ailarian Sea (silver)</span></div>
+      <div class="spec-pill">Paper <span>80–100 g/m²</span></div>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#bed">Bed layout</a>
+    <a href="#rules">Print rules</a>
+    <a href="#p1">Single crease</a>
+    <a href="#angles">Angle study</a>
+    <a href="#p2">Accordion</a>
+    <a href="#p3">Miura-ori</a>
+    <a href="#p4">Kirigami</a>
+    <a href="#p5">Waterbomb</a>
+    <a href="#protocol">Measure</a>
+    <a href="#checklist">Checklist</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ── BED LAYOUT ── -->
+<div class="section" id="bed">
+  <div class="section-header">
+    <span class="section-num">00</span>
+    <span class="section-title">Voltera V-One print bed &amp; specimen placement</span>
+  </div>
+  <div class="bed-diagram">
+    <svg viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg">
+      <!-- Bed outline -->
+      <rect x="60" y="30" width="580" height="300" rx="6" fill="#f0ede4" stroke="#ccc" stroke-width="1"/>
+      <text x="350" y="18" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#aaa" letter-spacing="2">VOLTERA V-ONE PRINT BED  (scaled representation)</text>
+
+      <!-- Print area -->
+      <rect x="120" y="55" width="460" height="250" rx="4" fill="#fff" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5 3"/>
+      <text x="350" y="76" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#c0392b" letter-spacing="1">PRINT AREA  128 × 116 mm</text>
+
+      <!-- Safe margin inner -->
+      <rect x="136" y="85" width="428" height="210" rx="3" fill="none" stroke="#8a9aa6" stroke-width="0.5" stroke-dasharray="2 3"/>
+      <text x="135" y="82" font-family="DM Mono,monospace" font-size="8" fill="#8a9aa6">5 mm safe margin</text>
+
+      <!-- Specimen A — single crease (100×80) -->
+      <rect x="150" y="100" width="160" height="128" rx="2" fill="#e8eef8" stroke="#3b5998" stroke-width="1.2"/>
+      <text x="230" y="138" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#3b5998" font-weight="500">100 × 80 mm</text>
+      <text x="230" y="150" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#3b5998">Single crease</text>
+      <!-- trace line -->
+      <line x1="150" y1="164" x2="310" y2="164" stroke="#3b5998" stroke-width="2" stroke-dasharray="4 2"/>
+      <text x="230" y="176" text-anchor="middle" font-family="DM Mono,monospace" font-size="7.5" fill="#8a9aa6">crease line (centre)</text>
+
+      <!-- Specimen B — accordion (100×100) -->
+      <rect x="330" y="100" width="200" height="160" rx="2" fill="#e8f4e8" stroke="#2e6e4e" stroke-width="1.2"/>
+      <text x="430" y="168" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#2e6e4e" font-weight="500">100 × 100 mm</text>
+      <text x="430" y="180" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#2e6e4e">Accordion / Miura</text>
+      <!-- accordion lines -->
+      <line x1="380" y1="100" x2="380" y2="260" stroke="#2e6e4e" stroke-width="1" stroke-dasharray="3 2"/>
+      <line x1="413" y1="100" x2="413" y2="260" stroke="#2e6e4e" stroke-width="1" stroke-dasharray="3 2"/>
+      <line x1="447" y1="100" x2="447" y2="260" stroke="#2e6e4e" stroke-width="1" stroke-dasharray="3 2"/>
+      <line x1="480" y1="100" x2="480" y2="260" stroke="#2e6e4e" stroke-width="1" stroke-dasharray="3 2"/>
+
+      <!-- Margin arrows -->
+      <line x1="120" y1="330" x2="580" y2="330" stroke="#ccc" stroke-width="0.8" marker-end="url(#arr-grey)" marker-start="url(#arr-grey-r)"/>
+      <text x="350" y="344" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#aaa">128 mm usable width</text>
+      <line x1="80" y1="55" x2="80" y2="305" stroke="#ccc" stroke-width="0.8" marker-end="url(#arr-grey)" marker-start="url(#arr-grey-r)"/>
+      <text x="40" y="185" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#aaa" transform="rotate(-90,40,185)">116 mm usable height</text>
+
+      <defs>
+        <marker id="arr-grey" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+          <path d="M1 1L7 4L1 7" fill="none" stroke="#aaa" stroke-width="1.2"/>
+        </marker>
+        <marker id="arr-grey-r" viewBox="0 0 8 8" refX="2" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M7 1L1 4L7 7" fill="none" stroke="#aaa" stroke-width="1.2"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+  <div class="tip info">
+    <span class="tip-icon">→</span>
+    <span>All specimens in this guide are sized to fit entirely within the 128 × 116 mm print area — including the traces, contact pads, and 5 mm margin from the edges. Print the specimen flat, cure, then fold.</span>
+  </div>
+</div>
+
+<!-- ── PRINT RULES ── -->
+<div class="section" id="rules">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <span class="section-title">Universal print rules</span>
+    <span class="section-note">apply to all 6 patterns</span>
+  </div>
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>Rule</th>
+        <th>Value / Instruction</th>
+        <th>Why it matters</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Trace orientation</strong></td>
+        <td>Always <strong>parallel</strong> to the fold axis — never perpendicular across a crease</td>
+        <td>Perpendicular traces crack open at 90–180°, causing open circuit</td>
+      </tr>
+      <tr>
+        <td><strong>Trace clearance from crease</strong></td>
+        <td>Minimum <strong>2 mm</strong> from any crease line to nearest trace edge</td>
+        <td>Crease region has maximum stress — ink delaminates if trace is too close</td>
+      </tr>
+      <tr>
+        <td><strong>Trace width</strong></td>
+        <td><strong>0.5 mm</strong> standard · 1.0 mm for patterns with >2 creases</td>
+        <td>Narrower = more brittle at crease. Wider = more robust but higher R baseline</td>
+      </tr>
+      <tr>
+        <td><strong>Ink passes</strong></td>
+        <td><strong>1 pass</strong> for all specimens (matches your calibrated Ceramics V9 profile)</td>
+        <td>Consistent baseline. Add a 2-pass variant only in Week 4 if time allows</td>
+      </tr>
+      <tr>
+        <td><strong>Contact pads</strong></td>
+        <td>3 × 3 mm pads at each trace end, positioned on the <strong>flat face</strong>, not on a crease</td>
+        <td>Pads are where you place multimeter probes — must be in a non-fold zone</td>
+      </tr>
+      <tr>
+        <td><strong>Crease pre-scoring</strong></td>
+        <td>Score creases with a blunt stylus <strong>before</strong> printing</td>
+        <td>Controlled crease radius reduces unpredictable ink stress at fold</td>
+      </tr>
+      <tr>
+        <td><strong>Kirigami cuts</strong></td>
+        <td>Cut with craft knife <strong>after</strong> printing and curing</td>
+        <td>Cutting before printing shifts print registration off the trace</td>
+      </tr>
+      <tr>
+        <td><strong>Curing</strong></td>
+        <td>Ceramics V9 profile: <strong>130 °C, air dry</strong>, standard curing time</td>
+        <td>Under-cured ink cracks earlier; over-cured makes paper brittle</td>
+      </tr>
+      <tr>
+        <td><strong>Measurement timing</strong></td>
+        <td>Take R reading within <strong>30 seconds</strong> of folding</td>
+        <td>Paper has viscoelastic recovery — R changes if you wait longer</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ── PATTERN 1: SINGLE CREASE ── -->
+<div class="section" id="p1">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <span class="section-title">Pattern 1 — Single crease</span>
+    <span class="section-note">Week 1 · Baseline</span>
+  </div>
+
+  <div class="pattern-card">
+    <div class="card-header">
+      <div class="card-week" style="background:#1a1814;">01 · W1</div>
+      <div class="card-title-block">
+        <div class="card-pattern-name">Single crease — parallel trace</div>
+        <div class="card-sub">BASELINE SPECIMEN A · essential reference for all other patterns</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-col">
+        <div class="card-col-label">Paper &amp; print layout</div>
+        <div class="specimen-diagram">
+          <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Paper outline -->
+            <rect x="40" y="20" width="200" height="160" rx="2" fill="#f9f7f3" stroke="#ccc" stroke-width="1"/>
+            <!-- Crease line (horizontal centre) -->
+            <line x1="40" y1="100" x2="240" y2="100" stroke="#d4a017" stroke-width="2" stroke-dasharray="6 3"/>
+            <!-- Traces (parallel = horizontal) -->
+            <line x1="60" y1="70" x2="220" y2="70" stroke="#3b5998" stroke-width="3"/>
+            <line x1="60" y1="130" x2="220" y2="130" stroke="#3b5998" stroke-width="3"/>
+            <!-- Contact pads -->
+            <rect x="55" y="63" width="10" height="14" rx="1" fill="#3b5998" opacity="0.7"/>
+            <rect x="215" y="63" width="10" height="14" rx="1" fill="#3b5998" opacity="0.7"/>
+            <rect x="55" y="123" width="10" height="14" rx="1" fill="#3b5998" opacity="0.7"/>
+            <rect x="215" y="123" width="10" height="14" rx="1" fill="#3b5998" opacity="0.7"/>
+            <!-- 2mm margin indicators -->
+            <line x1="40" y1="90" x2="240" y2="90" stroke="#e74c3c" stroke-width="0.5" stroke-dasharray="2 3" opacity="0.5"/>
+            <line x1="40" y1="110" x2="240" y2="110" stroke="#e74c3c" stroke-width="0.5" stroke-dasharray="2 3" opacity="0.5"/>
+            <!-- Dimension labels -->
+            <text x="140" y="106" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#d4a017">crease</text>
+            <text x="140" y="66" text-anchor="middle" font-family="DM Mono,monospace" font-size="7.5" fill="#3b5998">trace (parallel)</text>
+            <!-- Paper dims -->
+            <text x="140" y="195" text-anchor="middle" font-family="DM Mono,monospace" font-size="8.5" fill="#888">100 × 80 mm</text>
+            <!-- Arrows for dims -->
+            <line x1="40" y1="185" x2="240" y2="185" stroke="#bbb" stroke-width="0.7"/>
+            <line x1="28" y1="20" x2="28" y2="160" stroke="#bbb" stroke-width="0.7"/>
+            <text x="16" y="94" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#888" transform="rotate(-90,16,94)">80 mm</text>
+          </svg>
+        </div>
+        <div class="fold-legend">
+          <div class="fold-legend-item"><span class="legend-line" style="border-top-color:#d4a017;border-top-style:dashed;"></span> crease</div>
+          <div class="fold-legend-item"><span class="legend-line" style="border-top-color:#3b5998;border-top-style:solid;"></span> trace (0.5 mm)</div>
+          <div class="fold-legend-item"><span class="legend-line" style="border-top-color:#e74c3c;border-top-style:dashed;"></span> 2 mm clear zone</div>
+        </div>
+        <div class="print-spec" style="margin-top:10px;">
+          <span class="badge badge-geo">100 × 80 mm</span>
+          <span class="badge badge-ink">trace: parallel</span>
+          <span class="badge badge-ink">width: 0.5 mm</span>
+          <span class="badge badge-grey">2 traces / specimen</span>
+        </div>
+      </div>
+      <div class="card-col">
+        <div class="card-col-label">Print &amp; fold steps</div>
+        <ol class="steps">
+          <li><span class="step-num">1.</span> Cut paper to <strong>100 × 80 mm</strong>. Landscape orientation (100 mm wide).</li>
+          <li><span class="step-num">2.</span> Score crease at the <strong>horizontal centreline (40 mm from each edge)</strong> with a blunt stylus and ruler. Score on the back face.</li>
+          <li><span class="step-num">3.</span> Clamp flat to the Voltera bed. Probe-map the surface.</li>
+          <li><span class="step-num">4.</span> Print two traces running <strong>left to right (parallel to the crease)</strong> — one 30 mm above the crease, one 30 mm below. 3 × 3 mm contact pads at each end.</li>
+          <li><span class="step-num">5.</span> Cure with Ceramics V9 profile. Let cool completely before folding.</li>
+          <li><span class="step-num">6.</span> Measure R0 flat. Then fold to 90°, measure. Fold to 180°, measure. Unfold, measure again (recovery).</li>
+          <li><span class="step-num">7.</span> Repeat fold–unfold for <strong>10 / 25 / 50 / 100 cycles</strong>, measuring R after each checkpoint.</li>
+        </ol>
+        <div class="tip warn" style="margin-top:12px;">
+          <span class="tip-icon">!</span>
+          <span><strong>Also print a perpendicular control specimen</strong> with the trace running <em>perpendicular</em> (top to bottom, crossing the crease) — this corresponds to SC_90_L1/L2 in the dataset. It provides a failure reference: high ΔR/R₀ from the first fold cycles.</span>
+        </div>
+        <div class="meas-grid" style="margin-top:12px;">
+          <div class="meas-cell"><div class="meas-label">Specimens</div><div class="meas-val">2 (A + B)</div></div>
+          <div class="meas-cell"><div class="meas-label">Paper size</div><div class="meas-val">100×80 mm</div></div>
+          <div class="meas-cell"><div class="meas-label">Crease pos.</div><div class="meas-val">Centre</div></div>
+          <div class="meas-cell"><div class="meas-label">Fits in bed?</div><div class="meas-val">Yes ✓</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PATTERN 2: ACCORDION ── -->
+<!-- ── ANGLE STUDY ── -->
+<div class="section" id="angles">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <span class="section-title">Angle study — 0° / 45° / 90° variants</span>
+    <span class="section-note">Week 1–2 · cross-pattern sub-study</span>
+  </div>
+
+  <div class="tip info" style="margin-bottom:16px;">
+    <span class="tip-icon">→</span>
+    <span>The angle study adds <strong>6 extra specimens</strong> across three patterns. Each tests whether the ΔR/R₀ relationship with trace angle is gradual (a smooth curve) or has a sharp threshold. This is novel data for your specific ink + paper + printer combination — not covered in existing literature.</span>
+  </div>
+
+  <!-- Single crease angles -->
+  <div class="pattern-card" style="margin-bottom:12px;">
+    <div class="card-header">
+      <div class="card-week" style="background:#993c1d;">SC · W1</div>
+      <div class="card-title-block">
+        <div class="card-pattern-name">Single crease — 0° / 45° / 90°</div>
+        <div class="card-sub">3 specimens · same paper, same crease, only trace angle changes</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-col">
+        <div class="card-col-label">Three layouts — 100 × 80 mm each</div>
+        <div class="specimen-diagram">
+          <svg viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
+            <!-- Paper 1: 0° -->
+            <rect x="8" y="10" width="76" height="60" rx="2" fill="#f9f7f3" stroke="#ccc" stroke-width="0.8"/>
+            <line x1="8" y1="40" x2="84" y2="40" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="4 2"/>
+            <line x1="18" y1="25" x2="74" y2="25" stroke="#5C4E8A" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="18" y1="55" x2="74" y2="55" stroke="#5C4E8A" stroke-width="2.5" stroke-linecap="round"/>
+            <text x="46" y="75" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#5C4E8A" font-weight="500">EXP-SC-00</text>
+            <text x="46" y="84" text-anchor="middle" font-family="DM Mono,monospace" font-size="7.5" fill="#0F6E56">0° — parallel</text>
+            <rect x="78" y="32" width="12" height="12" rx="6" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+            <text x="84" y="41" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#0F6E56">✓</text>
+
+            <!-- Paper 2: 45° -->
+            <rect x="102" y="10" width="76" height="60" rx="2" fill="#f9f7f3" stroke="#ccc" stroke-width="0.8"/>
+            <line x1="102" y1="40" x2="178" y2="40" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="4 2"/>
+            <line x1="112" y1="12" x2="168" y2="66" stroke="#B45309" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="140" cy="40" r="5" fill="#FAEEDA" stroke="#B45309" stroke-width="1"/>
+            <text x="143" y="35" font-family="DM Mono,monospace" font-size="6.5" fill="#B45309">45°</text>
+            <text x="140" y="75" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#B45309" font-weight="500">EXP-SC-45</text>
+            <text x="140" y="84" text-anchor="middle" font-family="DM Mono,monospace" font-size="7.5" fill="#B45309">45° — unknown</text>
+            <rect x="172" y="32" width="12" height="12" rx="6" fill="#FAEEDA" stroke="#B45309" stroke-width="1"/>
+            <text x="178" y="41" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#B45309">?</text>
+
+            <!-- Paper 3: 90° -->
+            <rect x="196" y="10" width="76" height="60" rx="2" fill="#f9f7f3" stroke="#ccc" stroke-width="0.8"/>
+            <line x1="196" y1="40" x2="272" y2="40" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="4 2"/>
+            <line x1="234" y1="12" x2="234" y2="35" stroke="#A32D2D" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="234" y1="45" x2="234" y2="66" stroke="#A32D2D" stroke-width="2.5" stroke-linecap="round" opacity="0.3"/>
+            <circle cx="234" cy="40" r="5" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1"/>
+            <text x="234" y="43" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#A32D2D">✕</text>
+            <text x="234" y="75" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#A32D2D" font-weight="500">EXP-SC-90</text>
+            <text x="234" y="84" text-anchor="middle" font-family="DM Mono,monospace" font-size="7.5" fill="#A32D2D">90° — expected fail</text>
+            <rect x="266" y="32" width="12" height="12" rx="6" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1"/>
+            <text x="272" y="41" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#A32D2D">✕</text>
+
+            <!-- Hypothesis curve below -->
+            <text x="140" y="102" text-anchor="middle" font-family="DM Mono,monospace" font-size="7.5" fill="#888">hypothetical ΔR/R₀ vs angle</text>
+            <line x1="20" y1="200" x2="260" y2="200" stroke="#ccc" stroke-width="0.8"/>
+            <line x1="20" y1="110" x2="20" y2="202" stroke="#ccc" stroke-width="0.8"/>
+            <text x="46" y="208" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#888">0°</text>
+            <text x="140" y="208" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#888">45°</text>
+            <text x="234" y="208" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#888">90°</text>
+            <text x="12" y="128" text-anchor="middle" font-family="DM Mono,monospace" font-size="6.5" fill="#888" transform="rotate(-90,12,160)">ΔR/R₀</text>
+            <!-- Curve hypothesis A (gradual) -->
+            <path d="M 46 196 C 90 192 120 170 140 155 C 165 138 200 125 234 112" fill="none" stroke="#5C4E8A" stroke-width="1.2" stroke-dasharray="4 2" opacity="0.5"/>
+            <text x="238" y="110" font-family="DM Mono,monospace" font-size="6.5" fill="#5C4E8A" opacity="0.7">gradual?</text>
+            <!-- Curve hypothesis B (threshold) -->
+            <path d="M 46 196 C 90 194 110 192 130 190 C 148 140 155 115 234 112" fill="none" stroke="#B45309" stroke-width="1.2" stroke-dasharray="2 3" opacity="0.5"/>
+            <text x="238" y="118" font-family="DM Mono,monospace" font-size="6.5" fill="#B45309" opacity="0.7">threshold?</text>
+            <!-- Data points -->
+            <circle cx="46" cy="196" r="3.5" fill="#0F6E56"/>
+            <circle cx="140" cy="152" r="3.5" fill="#B45309" opacity="0.4"/>
+            <line x1="140" y1="135" x2="140" y2="170" stroke="#B45309" stroke-width="1" opacity="0.5"/>
+            <circle cx="234" cy="112" r="3.5" fill="#A32D2D"/>
+          </svg>
+        </div>
+        <div class="print-spec">
+          <span class="badge badge-geo">100 × 80 mm × 3</span>
+          <span class="badge badge-grey">same Gerber file, rotate trace only</span>
+        </div>
+      </div>
+      <div class="card-col">
+        <div class="card-col-label">Print instructions</div>
+        <ol class="steps">
+          <li><span class="step-num">1.</span> Cut <strong>3 identical sheets</strong> of 100 × 80 mm. Score crease at horizontal centre on all 3.</li>
+          <li><span class="step-num">2.</span> <strong>SC_0 (0°):</strong> print trace horizontally (parallel to crease). Corresponds to SC_0_L1 / SC_0_L2 in the dataset.</li>
+          <li><span class="step-num">3.</span> <strong>EXP-SC-45:</strong> rotate the trace 45° in the Gerber file. The trace runs diagonally from one corner, crossing the crease at 45°. Keep contact pads on the flat faces above and below the crease, not at the crossing point.</li>
+          <li><span class="step-num">4.</span> <strong>EXP-SC-90:</strong> print trace vertically (90° — perpendicular to crease). Single vertical line crossing the crease at its midpoint.</li>
+          <li><span class="step-num">5.</span> Cure all 3 together. Fold all to 180°. Measure ΔR/R₀ for each immediately.</li>
+          <li><span class="step-num">6.</span> Cycle all 3 to 100 cycles. The shape of the ΔR curve across the three specimens is your key finding.</li>
+        </ol>
+        <div class="tip warn">
+          <span class="tip-icon">!</span>
+          <span>For the 45° specimen, the contact pads must sit on the flat triangular face areas — not on the crease. Place one pad in the top-left zone and one in the bottom-right zone of the paper.</span>
+        </div>
+        <div class="meas-grid" style="margin-top:10px;">
+          <div class="meas-cell"><div class="meas-label">IDs</div><div class="meas-val">SC-00, SC-45, SC-90</div></div>
+          <div class="meas-cell"><div class="meas-label">Week</div><div class="meas-val">1</div></div>
+          <div class="meas-cell"><div class="meas-label">Fits in bed?</div><div class="meas-val">Yes — all 3 on one sheet</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accordion angles -->
+  <div class="pattern-card" style="margin-bottom:12px;">
+    <div class="card-header">
+      <div class="card-week" style="background:#2e6e4e;">ACC · W2</div>
+      <div class="card-title-block">
+        <div class="card-pattern-name">Parallel accordion — 0° / 45° / 90°</div>
+        <div class="card-sub">3 specimens · 4 creases each · tests cumulative angle stress across multiple creases</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-col">
+        <div class="card-col-label">Three layouts — 100 × 100 mm each</div>
+        <div class="specimen-diagram">
+          <svg viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg">
+            <!-- Paper 1: 0° accordion (vertical traces on panels) -->
+            <rect x="8" y="10" width="70" height="90" rx="2" fill="#f9f7f3" stroke="#ccc" stroke-width="0.8"/>
+            <line x1="22" y1="10" x2="22" y2="100" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <line x1="36" y1="10" x2="36" y2="100" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <line x1="50" y1="10" x2="50" y2="100" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <line x1="64" y1="10" x2="64" y2="100" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <!-- vertical traces on each panel -->
+            <line x1="15" y1="20" x2="15" y2="90" stroke="#5C4E8A" stroke-width="2" stroke-linecap="round"/>
+            <line x1="29" y1="20" x2="29" y2="90" stroke="#5C4E8A" stroke-width="2" stroke-linecap="round"/>
+            <line x1="43" y1="20" x2="43" y2="90" stroke="#5C4E8A" stroke-width="2" stroke-linecap="round"/>
+            <line x1="57" y1="20" x2="57" y2="90" stroke="#5C4E8A" stroke-width="2" stroke-linecap="round"/>
+            <text x="43" y="112" text-anchor="middle" font-family="DM Mono,monospace" font-size="7.5" fill="#5C4E8A" font-weight="500">EXP-ACC-00</text>
+            <text x="43" y="121" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#0F6E56">0° — parallel</text>
+            <text x="43" y="130" text-anchor="middle" font-family="DM Mono,monospace" font-size="6.5" fill="#888">traces on each panel</text>
+
+            <!-- Paper 2: 45° accordion (single diagonal trace crosses all 4 creases) -->
+            <rect x="102" y="10" width="76" height="90" rx="2" fill="#f9f7f3" stroke="#ccc" stroke-width="0.8"/>
+            <line x1="121" y1="10" x2="121" y2="100" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <line x1="140" y1="10" x2="140" y2="100" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <line x1="159" y1="10" x2="159" y2="100" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <line x1="178" y1="10" x2="178" y2="100" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <!-- diagonal trace crossing all 4 creases -->
+            <line x1="108" y1="15" x2="172" y2="95" stroke="#B45309" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- crossing markers -->
+            <circle cx="121" cy="31" r="3" fill="#FAEEDA" stroke="#B45309" stroke-width="0.8"/>
+            <circle cx="140" cy="55" r="3" fill="#FAEEDA" stroke="#B45309" stroke-width="0.8"/>
+            <circle cx="159" cy="79" r="3" fill="#FAEEDA" stroke="#B45309" stroke-width="0.8"/>
+            <text x="140" y="112" text-anchor="middle" font-family="DM Mono,monospace" font-size="7.5" fill="#B45309" font-weight="500">EXP-ACC-45</text>
+            <text x="140" y="121" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#B45309">45° — 4 crossings</text>
+            <text x="140" y="130" text-anchor="middle" font-family="DM Mono,monospace" font-size="6.5" fill="#888">cumulative oblique stress</text>
+
+            <!-- Paper 3: 90° accordion (horizontal trace crosses all 4 creases) -->
+            <rect x="196" y="10" width="76" height="90" rx="2" fill="#f9f7f3" stroke="#ccc" stroke-width="0.8"/>
+            <line x1="215" y1="10" x2="215" y2="100" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <line x1="234" y1="10" x2="234" y2="100" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <line x1="253" y1="10" x2="253" y2="100" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <line x1="267" y1="10" x2="267" y2="100" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <!-- horizontal trace crossing all 4 creases perpendicularly -->
+            <line x1="202" y1="55" x2="270" y2="55" stroke="#A32D2D" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="215" cy="55" r="3.5" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+            <circle cx="234" cy="55" r="3.5" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+            <circle cx="253" cy="55" r="3.5" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+            <circle cx="267" cy="55" r="3.5" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+            <text x="234" y="112" text-anchor="middle" font-family="DM Mono,monospace" font-size="7.5" fill="#A32D2D" font-weight="500">EXP-ACC-90</text>
+            <text x="234" y="121" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#A32D2D">90° — 4 perp. crossings</text>
+            <text x="234" y="130" text-anchor="middle" font-family="DM Mono,monospace" font-size="6.5" fill="#888">expected worst case</text>
+
+            <!-- legend -->
+            <line x1="8" y1="148" x2="22" y2="148" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <text x="26" y="151" font-family="DM Mono,monospace" font-size="7" fill="#888">crease</text>
+            <line x1="70" y1="148" x2="84" y2="148" stroke="#B45309" stroke-width="2"/>
+            <text x="88" y="151" font-family="DM Mono,monospace" font-size="7" fill="#888">trace</text>
+            <circle cx="140" cy="148" r="3" fill="#FAEEDA" stroke="#B45309" stroke-width="0.8"/>
+            <text x="147" y="151" font-family="DM Mono,monospace" font-size="7" fill="#888">stress point</text>
+          </svg>
+        </div>
+        <div class="print-spec">
+          <span class="badge badge-geo">100 × 100 mm × 3</span>
+          <span class="badge badge-grey">4 vertical creases each</span>
+        </div>
+      </div>
+      <div class="card-col">
+        <div class="card-col-label">Print instructions &amp; key insight</div>
+        <ol class="steps">
+          <li><span class="step-num">1.</span> Cut 3 sheets of <strong>100 × 100 mm</strong>. Score 4 vertical creases at 20/40/60/80 mm on all 3.</li>
+          <li><span class="step-num">2.</span> <strong>EXP-ACC-00:</strong> print one vertical trace centred on each panel face (5 panels = 5 traces). Connect with short bridges at alternating top/bottom edges. This is the standard accordion baseline.</li>
+          <li><span class="step-num">3.</span> <strong>EXP-ACC-45:</strong> print a <strong>single diagonal trace</strong> running from top-left to bottom-right across the full sheet, crossing all 4 creases at ~45°. Contact pads at top-left and bottom-right corners of the sheet.</li>
+          <li><span class="step-num">4.</span> <strong>EXP-ACC-90:</strong> print a <strong>single horizontal trace</strong> at the midline of the sheet, crossing all 4 creases perpendicularly. Contact pads at left and right edges.</li>
+          <li><span class="step-num">5.</span> The key comparison is: does the 45° accumulate stress <em>linearly</em> across 4 crossings, or does the oblique angle distribute stress better than 4 perpendicular crossings?</li>
+        </ol>
+        <div class="tip">
+          <span class="tip-icon">→</span>
+          <span><strong>The 45° accordion specimen is your most interesting data point.</strong> A single diagonal trace hits all 4 creases — if it survives better than the 90° specimen despite crossing all creases, it confirms that angle distribution matters more than avoiding crossings entirely.</span>
+        </div>
+        <div class="meas-grid" style="margin-top:10px;">
+          <div class="meas-cell"><div class="meas-label">IDs</div><div class="meas-val">ACC-00, ACC-45, ACC-90</div></div>
+          <div class="meas-cell"><div class="meas-label">Week</div><div class="meas-val">2</div></div>
+          <div class="meas-cell"><div class="meas-label">Fits in bed?</div><div class="meas-val">Yes ✓</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Miura-ori angles -->
+  <div class="pattern-card" style="margin-bottom:0;">
+    <div class="card-header">
+      <div class="card-week" style="background:#5c4e8a;">MO · W2</div>
+      <div class="card-title-block">
+        <div class="card-pattern-name">Miura-ori — horizontal / 45° / vertical on panels</div>
+        <div class="card-sub">3 specimens · Miura has two crease directions simultaneously — angle means something different here</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-col">
+        <div class="card-col-label">The Miura difference</div>
+        <div class="tip info" style="margin-bottom:10px;">
+          <span class="tip-icon">→</span>
+          <span>Unlike single crease or accordion, Miura-ori has <strong>two crease directions at once</strong> — horizontal rows and offset vertical columns. So no trace orientation is purely "parallel" to everything. Instead, test three positions on the panel face to find which direction survives best.</span>
+        </div>
+        <div class="specimen-diagram">
+          <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+            <!-- Three mini Miura panels -->
+            <!-- Panel 1: horizontal trace (MO-H) -->
+            <rect x="8" y="10" width="76" height="60" rx="2" fill="#f9f7f3" stroke="#ccc" stroke-width="0.8"/>
+            <line x1="8" y1="40" x2="84" y2="40" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <line x1="46" y1="10" x2="38" y2="70" stroke="#d4a017" stroke-width="1" stroke-dasharray="2 2" opacity="0.7"/>
+            <line x1="32" y1="22" x2="65" y2="22" stroke="#5C4E8A" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="32" y1="56" x2="65" y2="56" stroke="#5C4E8A" stroke-width="2.5" stroke-linecap="round"/>
+            <text x="46" y="78" text-anchor="middle" font-family="DM Mono,monospace" font-size="7.5" fill="#5C4E8A" font-weight="500">EXP-MO-H</text>
+            <text x="46" y="87" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#5C4E8A">horizontal on panel</text>
+            <text x="46" y="95" text-anchor="middle" font-family="DM Mono,monospace" font-size="6.5" fill="#888">parallel to horiz. creases</text>
+
+            <!-- Panel 2: 45° diagonal -->
+            <rect x="102" y="10" width="76" height="60" rx="2" fill="#f9f7f3" stroke="#ccc" stroke-width="0.8"/>
+            <line x1="102" y1="40" x2="178" y2="40" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <line x1="140" y1="10" x2="132" y2="70" stroke="#d4a017" stroke-width="1" stroke-dasharray="2 2" opacity="0.7"/>
+            <line x1="112" y1="16" x2="162" y2="58" stroke="#B45309" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="140" cy="38" r="3" fill="#FAEEDA" stroke="#B45309" stroke-width="0.8"/>
+            <text x="140" y="78" text-anchor="middle" font-family="DM Mono,monospace" font-size="7.5" fill="#B45309" font-weight="500">EXP-MO-45</text>
+            <text x="140" y="87" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#B45309">diagonal on panel</text>
+            <text x="140" y="95" text-anchor="middle" font-family="DM Mono,monospace" font-size="6.5" fill="#888">oblique to both creases</text>
+
+            <!-- Panel 3: vertical -->
+            <rect x="196" y="10" width="76" height="60" rx="2" fill="#f9f7f3" stroke="#ccc" stroke-width="0.8"/>
+            <line x1="196" y1="40" x2="272" y2="40" stroke="#d4a017" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <line x1="234" y1="10" x2="226" y2="70" stroke="#d4a017" stroke-width="1" stroke-dasharray="2 2" opacity="0.7"/>
+            <line x1="222" y1="15" x2="222" y2="62" stroke="#993C1D" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="222" cy="40" r="3" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+            <text x="234" y="78" text-anchor="middle" font-family="DM Mono,monospace" font-size="7.5" fill="#993C1D" font-weight="500">EXP-MO-90</text>
+            <text x="234" y="87" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#993C1D">vertical on panel</text>
+            <text x="234" y="95" text-anchor="middle" font-family="DM Mono,monospace" font-size="6.5" fill="#888">perp. to horiz., near vert. hinge</text>
+
+            <!-- Legend -->
+            <line x1="8" y1="115" x2="22" y2="115" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <text x="26" y="118" font-family="DM Mono,monospace" font-size="7" fill="#888">horiz. crease</text>
+            <line x1="8" y1="128" x2="22" y2="128" stroke="#d4a017" stroke-width="1" stroke-dasharray="2 2" opacity="0.7"/>
+            <text x="26" y="131" font-family="DM Mono,monospace" font-size="7" fill="#888">vert. hinge</text>
+            <text x="120" y="118" font-family="DM Mono,monospace" font-size="7" fill="#888">all specimens: 110 × 90 mm</text>
+          </svg>
+        </div>
+        <div class="print-spec">
+          <span class="badge badge-geo">110 × 90 mm × 3</span>
+          <span class="badge badge-warn">2 mm clear from ALL crease directions</span>
+        </div>
+      </div>
+      <div class="card-col">
+        <div class="card-col-label">Print instructions</div>
+        <ol class="steps">
+          <li><span class="step-num">1.</span> Cut 3 sheets of <strong>110 × 90 mm</strong>. Score the same Miura crease pattern on all 3.</li>
+          <li><span class="step-num">2.</span> <strong>EXP-MO-H:</strong> print traces horizontally on each panel face, parallel to the horizontal creases. This is the standard Miura baseline from the literature.</li>
+          <li><span class="step-num">3.</span> <strong>EXP-MO-45:</strong> print traces diagonally across each panel face at ~45°. The trace will be oblique to both the horizontal creases and the offset vertical hinges.</li>
+          <li><span class="step-num">4.</span> <strong>EXP-MO-90:</strong> print traces vertically on each panel face. Vertical traces are perpendicular to the horizontal creases but run roughly parallel to the vertical hinges — this creates a mixed stress condition unique to Miura.</li>
+          <li><span class="step-num">5.</span> The Miura 90° specimen is particularly interesting: it may not fail as badly as a single crease 90° specimen because the rigid-foldable property limits how much the panel face actually deforms.</li>
+        </ol>
+        <div class="tip">
+          <span class="tip-icon">→</span>
+          <span>If EXP-MO-90 survives better than EXP-SC-90, it <strong>directly proves the rigid-foldability advantage</strong> of Miura-ori for printed electronics — and that's a clean, publishable finding.</span>
+        </div>
+        <div class="meas-grid" style="margin-top:10px;">
+          <div class="meas-cell"><div class="meas-label">IDs</div><div class="meas-val">MO-H, MO-45, MO-90</div></div>
+          <div class="meas-cell"><div class="meas-label">Week</div><div class="meas-val">2</div></div>
+          <div class="meas-cell"><div class="meas-label">Fits in bed?</div><div class="meas-val">Yes ✓</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ACCORDION ── -->
+<div class="section" id="p2">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <span class="section-title">Pattern 2 — Parallel accordion</span>
+    <span class="section-note">Week 2</span>
+  </div>
+
+  <div class="pattern-card">
+    <div class="card-header">
+      <div class="card-week" style="background:#2e6e4e;">02 · W2</div>
+      <div class="card-title-block">
+        <div class="card-pattern-name">Parallel accordion — 4 creases</div>
+        <div class="card-sub">alternating mountain–valley · tests cumulative ΔR per crease stage</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-col">
+        <div class="card-col-label">Paper &amp; print layout</div>
+        <div class="specimen-diagram">
+          <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+            <rect x="30" y="20" width="220" height="160" rx="2" fill="#f9f7f3" stroke="#ccc" stroke-width="1"/>
+            <!-- 4 crease lines (vertical, evenly spaced in 100mm → every 20mm) -->
+            <line x1="74" y1="20" x2="74" y2="180" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="5 3"/>
+            <line x1="118" y1="20" x2="118" y2="180" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="5 3"/>
+            <line x1="162" y1="20" x2="162" y2="180" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="5 3"/>
+            <line x1="206" y1="20" x2="206" y2="180" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="5 3"/>
+            <!-- M / V labels -->
+            <text x="52" y="38" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#2e6e4e">M</text>
+            <text x="96" y="38" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#c0392b">V</text>
+            <text x="140" y="38" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#2e6e4e">M</text>
+            <text x="184" y="38" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#c0392b">V</text>
+            <text x="218" y="38" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#2e6e4e">M</text>
+            <!-- Traces (horizontal = parallel to vertical creases? NO — creases are vertical, so traces must run vertically too!)
+            Wait: crease is vertical → trace must be vertical (parallel to crease axis). Traces run top to bottom on each panel. -->
+            <!-- Trace on panel 1 (x~52) -->
+            <line x1="52" y1="45" x2="52" y2="155" stroke="#3b5998" stroke-width="2.5"/>
+            <!-- Trace on panel 2 (x~96) -->
+            <line x1="96" y1="45" x2="96" y2="155" stroke="#3b5998" stroke-width="2.5"/>
+            <!-- Trace on panel 3 (x~140) -->
+            <line x1="140" y1="45" x2="140" y2="155" stroke="#3b5998" stroke-width="2.5"/>
+            <!-- Trace on panel 4 (x~184) -->
+            <line x1="184" y1="45" x2="184" y2="155" stroke="#3b5998" stroke-width="2.5"/>
+            <!-- Connecting bridge traces (very short, linking panels at top and bottom alternately) -->
+            <line x1="52" y1="45" x2="96" y2="45" stroke="#3b5998" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.5"/>
+            <line x1="96" y1="155" x2="140" y2="155" stroke="#3b5998" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.5"/>
+            <line x1="140" y1="45" x2="184" y2="45" stroke="#3b5998" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.5"/>
+            <!-- Pads -->
+            <rect x="46" y="40" width="12" height="10" rx="1" fill="#3b5998" opacity="0.7"/>
+            <rect x="178" y="40" width="12" height="10" rx="1" fill="#3b5998" opacity="0.7"/>
+            <!-- Dims -->
+            <text x="140" y="195" text-anchor="middle" font-family="DM Mono,monospace" font-size="8.5" fill="#888">100 × 100 mm</text>
+            <text x="52" y="170" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#888">20mm faces</text>
+          </svg>
+        </div>
+        <div class="print-spec">
+          <span class="badge badge-geo">100 × 100 mm</span>
+          <span class="badge badge-ink">4 creases vertical</span>
+          <span class="badge badge-ink">trace: parallel (vertical)</span>
+          <span class="badge badge-grey">20 mm per panel</span>
+        </div>
+      </div>
+      <div class="card-col">
+        <div class="card-col-label">Print &amp; fold steps</div>
+        <ol class="steps">
+          <li><span class="step-num">1.</span> Cut paper to <strong>100 × 100 mm</strong> (square).</li>
+          <li><span class="step-num">2.</span> Mark 4 vertical crease lines at <strong>20, 40, 60, 80 mm</strong> from the left edge. Label alternating M (mountain) and V (valley) on the back.</li>
+          <li><span class="step-num">3.</span> Score all 4 creases with a stylus before printing.</li>
+          <li><span class="step-num">4.</span> Print traces <strong>vertically on each panel face</strong> (parallel to the vertical crease axis), centred on each 20 mm wide panel. Minimum 2 mm from crease edges. Connect panels with short bridges at alternating top/bottom edges.</li>
+          <li><span class="step-num">5.</span> Place contact pads on the <strong>first and last panel only</strong>.</li>
+          <li><span class="step-num">6.</span> Cure. Fold accordion: mountain folds fold toward you, valley folds away.</li>
+          <li><span class="step-num">7.</span> Measure R after each fold stage: 1 crease → 2 → 3 → 4. Then cycle test to 100.</li>
+        </ol>
+        <div class="tip">
+          <span class="tip-icon">→</span>
+          <span>The key data point here is whether ΔR is <strong>additive per crease</strong> (linear) or accelerates non-linearly. Measuring after each stage gives you that curve.</span>
+        </div>
+        <div class="meas-grid" style="margin-top:12px;">
+          <div class="meas-cell"><div class="meas-label">Specimens</div><div class="meas-val">1</div></div>
+          <div class="meas-cell"><div class="meas-label">Paper size</div><div class="meas-val">100×100 mm</div></div>
+          <div class="meas-cell"><div class="meas-label">Crease count</div><div class="meas-val">4 vertical</div></div>
+          <div class="meas-cell"><div class="meas-label">Fits in bed?</div><div class="meas-val">Yes ✓</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PATTERN 3: MIURA-ORI ── -->
+<div class="section" id="p3">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <span class="section-title">Pattern 3 — Miura-ori</span>
+    <span class="section-note">Week 2</span>
+  </div>
+
+  <div class="pattern-card">
+    <div class="card-header">
+      <div class="card-week" style="background:#5c4e8a;">03 · W2</div>
+      <div class="card-title-block">
+        <div class="card-pattern-name">Miura-ori — 2 × 2 panel grid</div>
+        <div class="card-sub">rigid-foldable · 1-DOF · traces on flat panels only, never on hinges</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-col">
+        <div class="card-col-label">Paper &amp; print layout</div>
+        <div class="specimen-diagram">
+          <svg viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
+            <!-- Miura-ori crease pattern flat layout -->
+            <!-- Outer rect -->
+            <rect x="30" y="20" width="220" height="180" rx="2" fill="#f9f7f3" stroke="#ccc" stroke-width="1"/>
+            <!-- Horizontal creases (2 rows = 3 lines at 0, 60, 120, 180 from top) -->
+            <!-- Row dividers at y=80 and y=140 -->
+            <line x1="30" y1="80" x2="250" y2="80" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="5 3"/>
+            <line x1="30" y1="140" x2="250" y2="140" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="5 3"/>
+            <!-- Vertical creases with Miura angle (staggered) -->
+            <!-- Col dividers at x=140 with slight offset between rows for Miura angle -->
+            <line x1="140" y1="20" x2="140" y2="80" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="5 3"/>
+            <line x1="125" y1="80" x2="125" y2="140" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="5 3"/>
+            <line x1="140" y1="140" x2="140" y2="200" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="5 3"/>
+            <!-- Diagonal hinge lines (Miura characteristic) -->
+            <line x1="140" y1="80" x2="125" y2="80" stroke="#d4a017" stroke-width="1" opacity="0.6"/>
+            <line x1="140" y1="140" x2="125" y2="140" stroke="#d4a017" stroke-width="1" opacity="0.6"/>
+            <!-- Traces on flat panels (short, centred, well away from creases) -->
+            <!-- Panel 1 TL (x30-140, y20-80) centre ~85,50 -->
+            <line x1="60" y1="50" x2="115" y2="50" stroke="#5c4e8a" stroke-width="2.5"/>
+            <!-- Panel 2 TR (x140-250, y20-80) -->
+            <line x1="165" y1="50" x2="225" y2="50" stroke="#5c4e8a" stroke-width="2.5"/>
+            <!-- Panel 3 ML -->
+            <line x1="50" y1="110" x2="100" y2="110" stroke="#5c4e8a" stroke-width="2.5"/>
+            <!-- Panel 4 MR -->
+            <line x1="150" y1="110" x2="200" y2="110" stroke="#5c4e8a" stroke-width="2.5"/>
+            <!-- Panel 5 BL -->
+            <line x1="60" y1="170" x2="115" y2="170" stroke="#5c4e8a" stroke-width="2.5"/>
+            <!-- Panel 6 BR -->
+            <line x1="165" y1="170" x2="225" y2="170" stroke="#5c4e8a" stroke-width="2.5"/>
+            <!-- Pads -->
+            <rect x="55" y="44" width="10" height="12" rx="1" fill="#5c4e8a" opacity="0.7"/>
+            <rect x="220" y="44" width="10" height="12" rx="1" fill="#5c4e8a" opacity="0.7"/>
+            <!-- NO TRACE ZONE labels -->
+            <text x="140" y="75" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#c0392b">NO TRACE</text>
+            <text x="135" y="88" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#c0392b">zone</text>
+            <!-- Label -->
+            <text x="140" y="215" text-anchor="middle" font-family="DM Mono,monospace" font-size="8.5" fill="#888">110 × 90 mm  ·  Miura-ori flat</text>
+          </svg>
+        </div>
+        <div class="print-spec">
+          <span class="badge badge-geo">110 × 90 mm</span>
+          <span class="badge badge-ink">traces on panels only</span>
+          <span class="badge badge-warn">2 mm clear from ALL creases</span>
+          <span class="badge badge-grey">6 panel traces</span>
+        </div>
+      </div>
+      <div class="card-col">
+        <div class="card-col-label">Print &amp; fold steps</div>
+        <ol class="steps">
+          <li><span class="step-num">1.</span> Cut paper to <strong>110 × 90 mm</strong>. Mark a 2 × 3 grid of panels (each ~55 × 30 mm).</li>
+          <li><span class="step-num">2.</span> Draw the Miura crease pattern: horizontal lines at 30 mm and 60 mm from the top, vertical lines offset by ~10 mm between rows (creating the characteristic parallelogram panels). Score all creases.</li>
+          <li><span class="step-num">3.</span> Print traces <strong>horizontally centred on each panel face</strong>, at least 2 mm from every crease. Do NOT let any trace cross a crease line or vertex.</li>
+          <li><span class="step-num">4.</span> Cure. Once cured, fold the Miura pattern: push two opposite corners together — it collapses in one motion.</li>
+          <li><span class="step-num">5.</span> Measure R at: fully flat → 50% folded → fully collapsed → redeployed.</li>
+          <li><span class="step-num">6.</span> Cycle test: fold → deploy is 1 cycle. Test at 10/25/50/100 cycles.</li>
+        </ol>
+        <div class="tip warn">
+          <span class="tip-icon">!</span>
+          <span>The Miura has both horizontal AND vertical creases. The trace clearance rule applies to both. Check every panel on the flat layout before printing.</span>
+        </div>
+        <div class="tip">
+          <span class="tip-icon">→</span>
+          <span>The Miura-ori is rigid-foldable — the flat panel faces do not bend at all. Your traces on those faces should survive much better than in accordion or single crease tests. This is the key insight to document.</span>
+        </div>
+        <div class="meas-grid" style="margin-top:10px;">
+          <div class="meas-cell"><div class="meas-label">Specimens</div><div class="meas-val">1</div></div>
+          <div class="meas-cell"><div class="meas-label">Paper size</div><div class="meas-val">110×90 mm</div></div>
+          <div class="meas-cell"><div class="meas-label">Fits in bed?</div><div class="meas-val">Yes ✓</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PATTERN 4: KIRIGAMI ── -->
+<div class="section" id="p4">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <span class="section-title">Pattern 4 — Kirigami (cut + fold)</span>
+    <span class="section-note">Week 2 · key technique</span>
+  </div>
+
+  <div class="pattern-card">
+    <div class="card-header">
+      <div class="card-week" style="background:#993c1d;">04 · W2</div>
+      <div class="card-title-block">
+        <div class="card-pattern-name">Kirigami — relief cuts at crease edge</div>
+        <div class="card-sub">4 variants: 5 mm cuts · 10 mm cuts · 90° bridge · Kirigami-Miura (160 g/m²)</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-col">
+        <div class="card-col-label">Paper &amp; print layout</div>
+        <div class="specimen-diagram">
+          <svg viewBox="0 0 280 210" xmlns="http://www.w3.org/2000/svg">
+            <rect x="40" y="20" width="200" height="160" rx="2" fill="#f9f7f3" stroke="#ccc" stroke-width="1"/>
+            <!-- Crease line (horizontal centre) -->
+            <line x1="40" y1="100" x2="240" y2="100" stroke="#d4a017" stroke-width="2" stroke-dasharray="6 3"/>
+            <!-- Trace (parallel) -->
+            <line x1="65" y1="70" x2="215" y2="70" stroke="#993c1d" stroke-width="3"/>
+            <line x1="65" y1="130" x2="215" y2="130" stroke="#993c1d" stroke-width="3"/>
+            <!-- KIRIGAMI CUTS at crease edges (5/10mm cuts perpendicular to crease, at trace positions) -->
+            <!-- Cuts are short perpendicular snips that straddle the crease at the trace location -->
+            <line x1="65" y1="92" x2="65" y2="108" stroke="#e74c3c" stroke-width="2.5"/>
+            <line x1="140" y1="92" x2="140" y2="108" stroke="#e74c3c" stroke-width="2.5"/>
+            <line x1="215" y1="92" x2="215" y2="108" stroke="#e74c3c" stroke-width="2.5"/>
+            <!-- Pads -->
+            <rect x="58" y="63" width="14" height="14" rx="1" fill="#993c1d" opacity="0.7"/>
+            <rect x="208" y="63" width="14" height="14" rx="1" fill="#993c1d" opacity="0.7"/>
+            <rect x="58" y="123" width="14" height="14" rx="1" fill="#993c1d" opacity="0.7"/>
+            <rect x="208" y="123" width="14" height="14" rx="1" fill="#993c1d" opacity="0.7"/>
+            <!-- Annotations -->
+            <text x="140" y="87" text-anchor="middle" font-family="DM Mono,monospace" font-size="7.5" fill="#e74c3c">cut (5 or 10 mm)</text>
+            <text x="140" y="116" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#d4a017">crease</text>
+            <!-- Bracket showing cut length -->
+            <line x1="250" y1="92" x2="256" y2="92" stroke="#e74c3c" stroke-width="1"/>
+            <line x1="250" y1="108" x2="256" y2="108" stroke="#e74c3c" stroke-width="1"/>
+            <line x1="253" y1="92" x2="253" y2="108" stroke="#e74c3c" stroke-width="1"/>
+            <text x="262" y="103" font-family="DM Mono,monospace" font-size="8" fill="#e74c3c">5mm</text>
+            <!-- dims -->
+            <text x="140" y="200" text-anchor="middle" font-family="DM Mono,monospace" font-size="8.5" fill="#888">100 × 80 mm  (×3 variants)</text>
+          </svg>
+        </div>
+        <div class="print-spec">
+          <span class="badge badge-geo">100 × 80 mm · 4 specimen groups</span>
+          <span class="badge badge-ink">trace: parallel (0°) or perpendicular (90°)</span>
+          <span class="badge badge-warn">print FIRST, cut AFTER curing</span>
+        </div>
+      </div>
+      <div class="card-col">
+        <div class="card-col-label">Print &amp; fold steps</div>
+        <ol class="steps">
+          <li><span class="step-num">1.</span> Score crease at horizontal centre. Print traces <strong>parallel to crease (0°)</strong> on the flat faces. Cure before cutting.</li>
+          <li><span class="step-num">2.</span> <strong>KR_0_5</strong>: after curing, cut <strong>5 mm perpendicular snips</strong> at the crease edge on either side of each trace (2.5 mm each side). Valley measurement. This produced the best kirigami result: ΔR/R₀ = 0.50.</li>
+          <li><span class="step-num">3.</span> <strong>KR_0_10 (L1 &amp; L2)</strong>: same but <strong>10 mm cuts</strong> (5 mm each side). Two lines cut from the same printed sample. Crease measurement. Results: ΔR/R₀ = 1.19 and 1.28 — larger cuts proved less stable.</li>
+          <li><span class="step-num">4.</span> <strong>KR_90_BRIDGE (L1 &amp; L2)</strong>: trace orientation <strong>90° (perpendicular)</strong> with 40 mm bridge cuts. Valley measurement. Both specimens failed — L2 before 10 cycles, L1 before 50 cycles. Bridge geometry at perpendicular orientation is not viable.</li>
+          <li><span class="step-num">5.</span> <strong>KR_TWISTING</strong>: Kirigami-Miura hybrid geometry, 95 mm cuts, <strong>160 g/m² substrate</strong>, 0° trace, crease measurement. Completed 100 cycles at ΔR/R₀ = 1.008. Not directly comparable to 80 g/m² specimens.</li>
+          <li><span class="step-num">6.</span> Cycle test to 100 cycles. Photograph crease zone after each checkpoint.</li>
+        </ol>
+        <div class="tip">
+          <span class="tip-icon">→</span>
+          <span>The cut must <strong>not</strong> intersect the trace. The 5 mm cut at the crease allows the fold zone to redistribute stress laterally — this is what protects the ink. Larger cuts (10 mm) introduce instability rather than relief.</span>
+        </div>
+        <div class="meas-grid" style="margin-top:12px;">
+          <div class="meas-cell"><div class="meas-label">Specimens</div><div class="meas-val">7 (KR_0_5, KR_0_10 ×2, KR_90_BRIDGE ×2, KR_TWISTING)</div></div>
+          <div class="meas-cell"><div class="meas-label">Best result</div><div class="meas-val">KR_0_5 · ΔR/R₀ = 0.50</div></div>
+          <div class="meas-cell"><div class="meas-label">Fits in bed?</div><div class="meas-val">Yes ✓</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PATTERN 5: WATERBOMB ── -->
+<div class="section" id="p5">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <span class="section-title">Pattern 5 — Waterbomb base</span>
+    <span class="section-note">Week 3 · vertex stress study</span>
+  </div>
+
+  <div class="pattern-card">
+    <div class="card-header">
+      <div class="card-week" style="background:#b45309;">05 · W3</div>
+      <div class="card-title-block">
+        <div class="card-pattern-name">Waterbomb base — valley fold study</div>
+        <div class="card-sub">1 specimen · WB_VALLEY · trace on triangular faces · failed &gt;25 cycles</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-col">
+        <div class="card-col-label">Paper &amp; print layout</div>
+        <div class="specimen-diagram">
+          <svg viewBox="0 0 280 210" xmlns="http://www.w3.org/2000/svg">
+            <!-- Square sheet -->
+            <rect x="40" y="20" width="200" height="160" rx="2" fill="#f9f7f3" stroke="#ccc" stroke-width="1"/>
+            <!-- Waterbomb crease pattern: diagonals + cross -->
+            <!-- Horizontal centre -->
+            <line x1="40" y1="100" x2="240" y2="100" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="4 2"/>
+            <!-- Vertical centre -->
+            <line x1="140" y1="20" x2="140" y2="180" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="4 2"/>
+            <!-- Diagonal 1 (TL to BR) — mountain -->
+            <line x1="40" y1="20" x2="240" y2="180" stroke="#8a9aa6" stroke-width="1.5" stroke-dasharray="2 3"/>
+            <!-- Diagonal 2 (TR to BL) — mountain -->
+            <line x1="240" y1="20" x2="40" y2="180" stroke="#8a9aa6" stroke-width="1.5" stroke-dasharray="2 3"/>
+            <!-- Traces on triangular faces (away from vertex and crease edges) -->
+            <!-- Top triangle face — trace runs parallel to top edge (horizontal) -->
+            <line x1="90" y1="45" x2="190" y2="45" stroke="#b45309" stroke-width="2.5"/>
+            <!-- Bottom triangle face -->
+            <line x1="90" y1="155" x2="190" y2="155" stroke="#b45309" stroke-width="2.5"/>
+            <!-- Contact pads on top and bottom triangles only -->
+            <rect x="84" y="38" width="12" height="12" rx="1" fill="#b45309" opacity="0.7"/>
+            <rect x="184" y="38" width="12" height="12" rx="1" fill="#b45309" opacity="0.7"/>
+            <rect x="84" y="149" width="12" height="12" rx="1" fill="#b45309" opacity="0.7"/>
+            <rect x="184" y="149" width="12" height="12" rx="1" fill="#b45309" opacity="0.7"/>
+            <!-- Vertex warning zone -->
+            <circle cx="140" cy="100" r="12" fill="#e74c3c" opacity="0.12"/>
+            <text x="140" y="104" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#c0392b">vertex</text>
+            <!-- Legend -->
+            <text x="140" y="200" text-anchor="middle" font-family="DM Mono,monospace" font-size="8.5" fill="#888">90 × 90 mm  ·  waterbomb flat</text>
+          </svg>
+        </div>
+        <div class="print-spec">
+          <span class="badge badge-geo">90 × 90 mm</span>
+          <span class="badge badge-ink">traces on top &amp; bottom triangles</span>
+          <span class="badge badge-warn">avoid vertex and all crease lines</span>
+        </div>
+      </div>
+      <div class="card-col">
+        <div class="card-col-label">Print &amp; fold steps</div>
+        <ol class="steps">
+          <li><span class="step-num">1.</span> Cut paper to <strong>90 × 90 mm</strong> (square — waterbomb requires square sheet).</li>
+          <li><span class="step-num">2.</span> Draw crease pattern on back: cross (vertical + horizontal centrelines) as valley folds, two diagonals as mountain folds. Score all 4 lines.</li>
+          <li><span class="step-num">3.</span> Print traces <strong>horizontally on the top and bottom triangular faces only</strong>, at least 15 mm from the centre vertex and 2 mm from diagonal creases. Do NOT print on left or right triangles.</li>
+          <li><span class="step-num">4.</span> Place contact pads at the outer edge of each trace on the top and bottom triangles.</li>
+          <li><span class="step-num">5.</span> Cure. Then fold the waterbomb: bring all 4 corners toward the centre, allowing the diagonals to mountain-fold. It should snap into a compressed state.</li>
+          <li><span class="step-num">6.</span> <strong>State 1 (flat)</strong>: measure R. <strong>State 2 (collapsed)</strong>: measure R. Check if the fold brings the top/bottom pad pairs into contact — if yes, you have a working bistable switch.</li>
+          <li><span class="step-num">7.</span> Cycle between states 10/25/50/100 times.</li>
+        </ol>
+        <div class="tip warn">
+          <span class="tip-icon">!</span>
+          <span>The waterbomb vertex sees stress from all 4 creases simultaneously. Keep all traces and pads at least 15 mm from the centre point.</span>
+        </div>
+        <div class="meas-grid" style="margin-top:12px;">
+          <div class="meas-cell"><div class="meas-label">Specimen</div><div class="meas-val">WB_VALLEY</div></div>
+          <div class="meas-cell"><div class="meas-label">Result</div><div class="meas-val">FAIL &gt;25 cycles · open circuit at valley vertex</div></div>
+          <div class="meas-cell"><div class="meas-label">ΔR/R₀</div><div class="meas-val">n/a</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MEASUREMENT PROTOCOL ── -->
+<div class="section" id="protocol">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <span class="section-title">Measurement protocol</span>
+    <span class="section-note">same for all specimens</span>
+  </div>
+  <table class="summary-table">
+    <thead>
+      <tr><th>Step</th><th>Action</th><th>Record in database</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>R₀</strong></td><td>Measure resistance flat, before any folding. Probe distance fixed at 30 mm.</td><td>R0 flat (Ω)</td></tr>
+      <tr><td><strong>Sheet R</strong></td><td>Auto-calculated from R0 and trace length (formula in Excel).</td><td>Sheet R (Ω/sq)</td></tr>
+      <tr><td><strong>R at 90°</strong></td><td>Fold to 90° using a folded book as angle stop. Measure within 30 sec. Single Crease specimens only.</td><td>R at 90° (Ω)</td></tr>
+      <tr><td><strong>R at 180°</strong></td><td>Fold fully flat (faces coplanar). Measure within 30 sec. Note if FAIL (open circuit).</td><td>R at 180° (Ω)</td></tr>
+      <tr><td><strong>Cycle 10</strong></td><td>10 complete fold–unfold cycles at 180°. Measure R flat after last cycle.</td><td>R @10 cyc (Ω)</td></tr>
+      <tr><td><strong>Cycle 25/50/100</strong></td><td>Continue cycling. Measure R at each checkpoint.</td><td>R @25/50/100 (Ω)</td></tr>
+      <tr><td><strong>ΔR/R₀</strong></td><td>Auto-calculated: (R_100cyc − R₀) / R₀. Target: &lt;0.3 excellent, &gt;1.0 failed.</td><td>Formula in Excel</td></tr>
+      <tr><td><strong>Failure mode</strong></td><td>Photograph the crease under magnification. Note: crack / delamination / open circuit.</td><td>Failure mode + photo ref</td></tr>
+      <tr><td><strong>LED test</strong></td><td>Connect a 3V LED in series with the circuit. Does it illuminate at flat? After 100 cycles?</td><td>LED pass Y/N/—</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ── FULL SPECIMEN SUMMARY ── -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <span class="section-title">All specimens at a glance</span>
+    <span class="section-note">22 specimens · final characterisation dataset</span>
+  </div>
+  <table class="summary-table">
+    <thead>
+      <tr><th>ID</th><th>Pattern</th><th>Orientation</th><th>Position</th><th>ΔR/R₀</th><th>Cycles</th><th>Rating</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>MO_45_UNCUT</strong></td><td>Miura-ori</td><td>45° diagonal panel</td><td>Face</td><td>0,050</td><td>&gt;100</td><td style="color:#1a5c3a;font-weight:500;">Excellent</td></tr>
+      <tr><td><strong>MO_45_CUT</strong></td><td>Miura-ori</td><td>45° diagonal panel</td><td>Face</td><td>0,051</td><td>&gt;100</td><td style="color:#1a5c3a;font-weight:500;">Excellent</td></tr>
+      <tr><td><strong>MO_90_UNCUT</strong></td><td>Miura-ori</td><td>90° perpendicular</td><td>Face</td><td>0,557</td><td>&gt;100</td><td style="color:#1e6b45;font-weight:500;">Acceptable</td></tr>
+      <tr><td><strong>MO_0_UNCUT</strong></td><td>Miura-ori</td><td>0° horizontal</td><td>Face</td><td>0,824</td><td>&gt;100</td><td style="color:#8a5c00;font-weight:500;">Marginal</td></tr>
+      <tr style="background:rgba(46,110,78,0.05)"><td><strong>KR_0_5</strong></td><td>Kirigami</td><td>0° parallel · 5 mm cuts</td><td>Valley</td><td>0,502</td><td>&gt;100</td><td style="color:#1e6b45;font-weight:500;">Acceptable</td></tr>
+      <tr style="background:rgba(46,110,78,0.05)"><td><strong>KR_0_10_L1</strong></td><td>Kirigami</td><td>0° parallel · 10 mm cuts</td><td>Crease</td><td>1,186</td><td>&gt;100</td><td style="color:#9b1c1c;font-weight:500;">Degraded</td></tr>
+      <tr style="background:rgba(46,110,78,0.05)"><td><strong>KR_0_10_L2</strong></td><td>Kirigami</td><td>0° parallel · 10 mm cuts</td><td>Crease</td><td>1,278</td><td>&gt;100</td><td style="color:#9b1c1c;font-weight:500;">Degraded</td></tr>
+      <tr style="background:rgba(46,110,78,0.05)"><td><strong>KR_TWISTING</strong></td><td>Kiri-Miura · 160 g/m²</td><td>0° parallel · 95 mm cuts</td><td>Crease</td><td>1,008</td><td>&gt;100</td><td style="color:#9b1c1c;font-weight:500;">Degraded</td></tr>
+      <tr style="background:rgba(46,110,78,0.05)"><td><strong>KR_90_BRIDGE_L1</strong></td><td>Kirigami</td><td>90° perpendicular · bridge</td><td>Valley</td><td>n/a</td><td>&gt;25</td><td style="color:#4b0000;font-weight:500;">FAIL</td></tr>
+      <tr style="background:rgba(46,110,78,0.05)"><td><strong>KR_90_BRIDGE_L2</strong></td><td>Kirigami</td><td>90° perpendicular · bridge</td><td>Valley</td><td>n/a</td><td>&lt;10</td><td style="color:#4b0000;font-weight:500;">FAIL</td></tr>
+      <tr style="background:rgba(180,83,9,0.06)"><td><strong>SC_90_L1</strong></td><td>Single Crease</td><td>90° perpendicular</td><td>Valley</td><td>2,056</td><td>&gt;100</td><td style="color:#9b1c1c;font-weight:500;">Degraded</td></tr>
+      <tr style="background:rgba(180,83,9,0.06)"><td><strong>SC_90_L2</strong></td><td>Single Crease</td><td>90° perpendicular</td><td>Valley</td><td>0,870</td><td>&gt;100</td><td style="color:#8a5c00;font-weight:500;">Marginal</td></tr>
+      <tr style="background:rgba(180,83,9,0.06)"><td><strong>SC_0_L1</strong></td><td>Single Crease</td><td>0° horizontal</td><td>Valley</td><td>2,071</td><td>&gt;100</td><td style="color:#9b1c1c;font-weight:500;">Degraded</td></tr>
+      <tr style="background:rgba(180,83,9,0.06)"><td><strong>SC_0_L2</strong></td><td>Single Crease</td><td>0° horizontal</td><td>Valley</td><td>0,870</td><td>&gt;100</td><td style="color:#8a5c00;font-weight:500;">Marginal</td></tr>
+      <tr style="background:rgba(180,83,9,0.06)"><td><strong>SC_45</strong></td><td>Single Crease</td><td>45° diagonal</td><td>Valley</td><td>n/a</td><td>&lt;10</td><td style="color:#4b0000;font-weight:500;">FAIL</td></tr>
+      <tr><td><strong>ACC_90_L1</strong></td><td>Accordion</td><td>90° horizontal · 4 creases</td><td>Crease</td><td>1,927</td><td>&gt;100</td><td style="color:#9b1c1c;font-weight:500;">Degraded</td></tr>
+      <tr><td><strong>ACC_45_L1</strong></td><td>Accordion</td><td>45° diagonal · 4 creases</td><td>Crease</td><td>2,688</td><td>&gt;100</td><td style="color:#9b1c1c;font-weight:500;">Degraded</td></tr>
+      <tr><td><strong>ACC_0_L1</strong></td><td>Accordion</td><td>0° vertical · 4 creases</td><td>Crease</td><td>n/a</td><td>&gt;25</td><td style="color:#4b0000;font-weight:500;">FAIL</td></tr>
+      <tr><td><strong>ACC_0_L4</strong></td><td>Accordion</td><td>0° vertical · 4 creases</td><td>Valley</td><td>n/a</td><td>&gt;25</td><td style="color:#4b0000;font-weight:500;">FAIL</td></tr>
+      <tr><td><strong>ACC_90_L2</strong></td><td>Accordion</td><td>90° horizontal · 4 creases</td><td>Valley</td><td>n/a</td><td>&lt;10</td><td style="color:#4b0000;font-weight:500;">FAIL</td></tr>
+      <tr><td><strong>WB_VALLEY</strong></td><td>Waterbomb</td><td>90° perpendicular</td><td>Valley</td><td>n/a</td><td>&gt;25</td><td style="color:#4b0000;font-weight:500;">FAIL</td></tr>
+    </tbody>
+  </table>
+  <div class="tip info" style="margin-top:12px;">
+    <span class="tip-icon">→</span>
+    <span>Total: <strong>22 specimens</strong> across 5 patterns — including angle study variants at 0°, 45°, and 90°. All fit within the 128 × 116 mm Voltera print bed. Specimens sharing an ID suffix (e.g. SC_90_L1 / SC_90_L2) were cut from the same printed sheet.</span>
+  </div>
+</div>
+
+<!-- ── PRE-PRINT CHECKLIST ── -->
+<div class="section" id="checklist">
+  <div class="section-header">
+    <span class="section-num">11</span>
+    <span class="section-title">Pre-print checklist</span>
+    <span class="section-note">run before every session</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div class="pattern-card" style="margin:0;">
+      <div style="padding:16px 20px;">
+        <div class="card-col-label" style="margin-bottom:10px;">Before mounting paper</div>
+        <ul class="checklist">
+          <li><span class="check-box"></span><span>Paper cut to exact dimensions (ruler + craft knife)</span></li>
+          <li><span class="check-box"></span><span>Crease lines scored on back with stylus before placing on bed</span></li>
+          <li><span class="check-box"></span><span>Paper flat — no curl. If curling: tape corners, or place under weight for 10 min first</span></li>
+          <li><span class="check-box"></span><span>Ink cartridge: Ailarian Sea silver ink, loaded and primed</span></li>
+          <li><span class="check-box"></span><span>Ink profile selected: Ceramics V9 in Voltera software</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pattern-card" style="margin:0;">
+      <div style="padding:16px 20px;">
+        <div class="card-col-label" style="margin-bottom:10px;">Before pressing print</div>
+        <ul class="checklist">
+          <li><span class="check-box"></span><span>Probe-map complete — height map shows surface is flat (&lt;0.1 mm variation)</span></li>
+          <li><span class="check-box"></span><span>Gerber file: traces routed parallel to crease, 2 mm clear zone confirmed in design</span></li>
+          <li><span class="check-box"></span><span>Contact pads positioned on flat faces, not on or near crease lines</span></li>
+          <li><span class="check-box"></span><span>Print preview checked — no trace crossing any crease line</span></li>
+          <li><span class="check-box"></span><span>Specimen ID written in pencil on the back before printing starts</span></li>
+          <li><span class="check-box"></span><span>Multimeter probes ready, probe spacing jig set to 30 mm</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:16px;" class="pattern-card">
+    <div style="padding:16px 20px;">
+      <div class="card-col-label" style="margin-bottom:10px;">After printing, before folding</div>
+      <ul class="checklist">
+        <li><span class="check-box"></span><span>Curing complete — do not fold while ink is warm or still curing</span></li>
+        <li><span class="check-box"></span><span>Visual check under magnification: traces have consistent width, no voids, no ink bleed into crease zone</span></li>
+        <li><span class="check-box"></span><span>R₀ measured and logged in Excel before any folding</span></li>
+        <li><span class="check-box"></span><span>For kirigami specimens: craft knife cuts made cleanly, not intersecting traces. Paper tested for clean fold before cycling.</span></li>
+        <li><span class="check-box"></span><span>Photo taken of flat specimen (reference for failure mode comparison later)</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="margin-top:60px;padding:24px 0;border-top:1px solid rgba(0,0,0,0.08);">
+  <p style="font-family:var(--mono);font-size:9px;color:var(--silver);letter-spacing:0.08em;">
+    M12 RESEARCH · TU/e INDUSTRIAL DESIGN · FOLDABLE PRINTED ELECTRONICS · VOLTERA V-ONE + AIL ARIAN RESILVER 102 · 2026
+  </p>
+</div>
+
+</main>
+</body>
+</html>
