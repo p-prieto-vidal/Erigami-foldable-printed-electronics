@@ -7,7 +7,7 @@
 **Supervisor:** Amy K.M. Winters  
 **Programme:** Master Industrial Design · M12 Research · Sensory Matters squad  
 **Year:** 2026  
-**Archive:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
+**Archive:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20625501.svg)](https://doi.org/10.5281/zenodo.20625501)
 
 ---
 
@@ -132,7 +132,7 @@ If you use this dataset or materials in your research, please cite:
   author    = {Prieto Vidal, Pablo},
   title     = {E-Regami: Characterising Silver Nanoparticle Ink Traces
                on Folded Cellulose for Foldable Printed Electronics},
-  booktitle = {[Venue — e.g. Proceedings of TEI 2027]},
+  booktitle = {TBD},
   year      = {2026},
   doi       = {[Paper DOI when available]}
 }
@@ -143,8 +143,8 @@ If you use this dataset or materials in your research, please cite:
                and Pattern Library},
   year      = {2026},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.XXXXXXX},
-  url       = {https://doi.org/10.5281/zenodo.XXXXXXX}
+  doi       = {10.5281/zenodo.20625501},
+  url       = {https://doi.org/10.5281/zenodo.20625501}
 }
 ```
 
