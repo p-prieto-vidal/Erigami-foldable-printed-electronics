@@ -51,7 +51,7 @@ eregami-foldable-printed-electronics/
     │   └── eregami_resistance.ino        # Real-time resistance measurement via voltage divider
     └── processing/
         └── eregami_visualiser/
-            └── eregami_visualiser.pde    # Live graph + interactive 3D fold model
+            └── eregami_visualiser.py    # Live graph + interactive 3D fold model
 ```
 
 ---
